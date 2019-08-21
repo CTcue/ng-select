@@ -2168,7 +2168,6 @@ describe('NgSelectComponent', () => {
             tickAndDetectChanges(fixture);
             fixture.componentInstance.select.filter('Vil');
             tickAndDetectChanges(fixture);
-            triggerKeyDownEvent(getNgSelectElement(fixture), KeyCode.ArrowDown);
             triggerKeyDownEvent(getNgSelectElement(fixture), KeyCode.Enter);
             expect(fixture.componentInstance.selectedCity.name).toBe('Vil');
         }));
