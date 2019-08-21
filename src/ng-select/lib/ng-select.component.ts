@@ -501,9 +501,9 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     showNoItemsFound() {
-        return this.itemsList.filteredItems.length === 0 &&
-            !this.loading &&
-            this.searchTerm &&
+        const empty = this.itemsList.filteredItems.length === 0;
+        return ((empty && !this._isTypeahead && !this.loading) ||
+            (empty && this._isTypeahead && this.searchTerm && !this.loading)) &&
             !this.showAddTag;
     }
 
