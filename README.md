@@ -292,3 +292,4 @@ It makes the following changes compared with upstream:
   * The custom tag is visible while loading.
   * The loading text is hidden while the custom tag is visible.
   * The input text is not cleared when closing the dropdown.
+  * The text cursor is always placed after the selected value.
