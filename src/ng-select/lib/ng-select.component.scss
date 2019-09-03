@@ -85,7 +85,7 @@
     &.ng-select-single {
         &.ng-select-filtered {
             .ng-select-container .ng-value-container .ng-value {
-                visibility: hidden;
+                display: none;
             }
         }
         .ng-select-container {
@@ -93,14 +93,10 @@
                 @include wrapt-text;
                 .ng-value {
                     @include wrapt-text;
+                    flex: 0 0 auto;
                     .ng-value-icon {
                         display: none;
                     }
-                }
-                .ng-input {
-                    position: absolute;
-                    left: 0;
-                    width: 100%;
                 }
             }
         }
