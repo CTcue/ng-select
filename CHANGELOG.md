@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.9](https://github.com/ct-cue/ng-select/compare/v3.0.8...v3.0.9) (2019-09-03)
+
+
+### Bug Fixes
+
+* put text cursor after value in single-value select ([#6](https://github.com/ct-cue/ng-select/issues/6)) ([9f02e4c](https://github.com/ct-cue/ng-select/commit/9f02e4c))
+* run close event inside zone ([b5f63b6](https://github.com/ct-cue/ng-select/commit/b5f63b6)), closes [#1309](https://github.com/ct-cue/ng-select/issues/1309)
+* scroll to marked item only when it is outside of panel height ([eb1a803](https://github.com/ct-cue/ng-select/commit/eb1a803)), closes [#1273](https://github.com/ct-cue/ng-select/issues/1273)
+
+
+
 ### [3.0.8](https://github.com/ct-cue/ng-select/compare/v3.0.7...v3.0.8) (2019-08-21)
 
 
