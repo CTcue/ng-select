@@ -170,7 +170,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* feat: adjust dropdown position on selection when multiple and appendTo ([c2b094e](https://github.com/ng-select/ng-select/commit/c2b094e)), 
+* feat: adjust dropdown position on selection when multiple and appendTo ([c2b094e](https://github.com/ng-select/ng-select/commit/c2b094e)),
 closes [#984](https://github.com/ng-select/ng-select/issues/984)
 
 
