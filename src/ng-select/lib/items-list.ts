@@ -42,6 +42,10 @@ export class ItemsList {
     }
 
     get noItemsToSelect(): boolean {
+        if (this._ngSelect.hideSelected && !this.selectedItems.length) {
+            return false;
+        }
+
         return this._ngSelect.hideSelected && this._items.length === this.selectedItems.length;
     }
 

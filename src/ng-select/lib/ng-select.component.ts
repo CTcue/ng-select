@@ -1,56 +1,20 @@
-import {
-    Component,
-    OnDestroy,
-    OnChanges,
-    AfterViewInit,
-    forwardRef,
-    ChangeDetectorRef,
-    Input,
-    Output,
-    EventEmitter,
-    ContentChild,
-    TemplateRef,
-    ViewEncapsulation,
-    HostListener,
-    HostBinding,
-    ViewChild,
-    ElementRef,
-    ChangeDetectionStrategy,
-    Inject,
-    SimpleChanges,
-    ContentChildren,
-    QueryList,
-    InjectionToken,
-    Attribute
-} from '@angular/core';
+import { AfterViewInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, ElementRef, EventEmitter, forwardRef, HostBinding, HostListener, Inject, InjectionToken, Input, OnChanges, OnDestroy, Output, QueryList, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { takeUntil, startWith, tap, debounceTime, map, filter } from 'rxjs/operators';
-import { Subject, merge } from 'rxjs';
-
-import {
-    NgOptionTemplateDirective,
-    NgLabelTemplateDirective,
-    NgHeaderTemplateDirective,
-    NgFooterTemplateDirective,
-    NgOptgroupTemplateDirective,
-    NgNotFoundTemplateDirective,
-    NgTypeToSearchTemplateDirective,
-    NgLoadingTextTemplateDirective,
-    NgMultiLabelTemplateDirective,
-    NgTagTemplateDirective,
-    NgLoadingSpinnerTemplateDirective
-} from './ng-templates.directive';
-
-import { ConsoleService } from './console.service';
-import { isDefined, isFunction, isPromise, isObject } from './value-utils';
-import { ItemsList } from './items-list';
-import { NgOption, KeyCode } from './ng-select.types';
-import { newId } from './id';
-import { NgDropdownPanelComponent } from './ng-dropdown-panel.component';
-import { NgOptionComponent } from './ng-option.component';
-import { SelectionModelFactory } from './selection-model';
+import { merge, Subject } from 'rxjs';
+import { debounceTime, filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
 import { NgSelectConfig } from './config.service';
+import { ConsoleService } from './console.service';
+import { newId } from './id';
+import { ItemsList } from './items-list';
+import { NgDropdownPanelComponent } from './ng-dropdown-panel.component';
 import { NgDropdownPanelService } from './ng-dropdown-panel.service';
+import { NgOptionComponent } from './ng-option.component';
+import { KeyCode, NgOption } from './ng-select.types';
+import { NgFooterTemplateDirective, NgHeaderTemplateDirective, NgLabelTemplateDirective, NgLoadingSpinnerTemplateDirective, NgLoadingTextTemplateDirective, NgMultiLabelTemplateDirective, NgNotFoundTemplateDirective, NgOptgroupTemplateDirective, NgOptionTemplateDirective, NgTagTemplateDirective, NgTypeToSearchTemplateDirective } from './ng-templates.directive';
+import { SelectionModelFactory } from './selection-model';
+import { isDefined, isFunction, isObject, isPromise } from './value-utils';
+
+
 
 export const SELECTION_MODEL_FACTORY = new InjectionToken<SelectionModelFactory>('ng-select-selection-model');
 export type DropdownPosition = 'bottom' | 'top' | 'auto';
@@ -106,6 +70,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() labelForId = null;
     @Input() inputAttrs: { [key: string]: string } = {};
     @Input() tabIndex: number;
+    @Input() alwaysShowAddTag = false;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -490,14 +455,20 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     };
 
     get showAddTag() {
-        if (!this.searchTerm) {
+        if (!this.searchTerm || !this.searchTerm.length || !this.addTag) {
             return false;
         }
 
+        if (this.alwaysShowAddTag) {
+            return true;
+        }
+
         const term = this.searchTerm.toLowerCase();
-        return this.addTag &&
-            (!this.itemsList.filteredItems.some(x => x.label.toLowerCase() === term) &&
-                (!this.hideSelected && this.isOpen || !this.selectedItems.some(x => x.label.toLowerCase() === term)));
+
+        const inputExists = this.itemsList.filteredItems.some(x => x.label.toLowerCase() === term);
+        const inputIsSelected = this.selectedItems.some(x => x.label.toLowerCase() === term);
+
+        return !inputExists && !inputIsSelected;
     }
 
     showNoItemsFound() {
