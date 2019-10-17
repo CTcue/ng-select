@@ -2,36 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [3.0.9](https://github.com/ct-cue/ng-select/compare/v3.0.8...v3.0.9) (2019-09-03)
+### [3.0.10](https://github.com/CTcue/ng-select/compare/v3.0.9...v3.0.10) (2019-10-17)
 
+* Fixes issue where the combination of [addTag]=false and [hideSelected]=true would not emit open event.
+* Additional option `[alwaysShowAddTag]` to always show the addTag, even if the search input exactly matches an item from the dropdown
+
+### [3.0.9](https://github.com/CTcue/ng-select/compare/v3.0.8...v3.0.9) (2019-09-03)
 
 ### Bug Fixes
 
-
-* put text cursor after value in single-value select ([#6](https://github.com/ct-cue/ng-select/issues/6)) ([9f02e4c](https://github.com/ct-cue/ng-select/commit/9f02e4c))
-* run close event inside zone ([b5f63b6](https://github.com/ct-cue/ng-select/commit/b5f63b6)), closes [#1309](https://github.com/ct-cue/ng-select/issues/1309)
-* scroll to marked item only when it is outside of panel height ([eb1a803](https://github.com/ct-cue/ng-select/commit/eb1a803)), closes [#1273](https://github.com/ct-cue/ng-select/issues/1273)
+* Put text cursor after value in single-value select ([#6](https://github.com/CTcue/ng-select/issues/6)) ([9f02e4c](https://github.com/CTcue/ng-select/commit/9f02e4c))
+* Run close event inside zone ([b5f63b6](https://github.com/CTcue/ng-select/commit/b5f63b6)), closes [#1309](https://github.com/CTcue/ng-select/issues/1309)
+* Scroll to marked item only when it is outside of panel height ([eb1a803](https://github.com/CTcue/ng-select/commit/eb1a803)), closes [#1273](https://github.com/CTcue/ng-select/issues/1273)
 
 
 ### Chores
 
+* Synchronize with upstream ([3b9ae0a](https://github.com/CTcue/ng-select/commit/3b9ae0a))
 
-* synchronise with upstream ([3b9ae0a](https://github.com/ct-cue/ng-select/commit/3b9ae0a))
-
-
-
-### [3.0.8](https://github.com/ct-cue/ng-select/compare/v3.0.7...v3.0.8) (2019-08-21)
+### [3.0.8](https://github.com/CTcue/ng-select/compare/v3.0.7...v3.0.8) (2019-08-21)
 
 
-
-### [3.0.7](https://github.com/ct-cue/ng-select/compare/v3.0.6...v3.0.7) (2019-08-21)
+### [3.0.7](https://github.com/CTcue/ng-select/compare/v3.0.6...v3.0.7) (2019-08-21)
 
 
 ### Bug Fixes
 
-* Do not show the "no items found" entry if the search term is empty ([#5](https://github.com/ct-cue/ng-select/issues/5)) ([839d5c8](https://github.com/ct-cue/ng-select/commit/839d5c8))
-* Do not use down arrow key to navigate to the next item in tag selection with item test ([#4](https://github.com/ct-cue/ng-select/issues/4)) ([22140c6](https://github.com/ct-cue/ng-select/commit/22140c6))
-
+* Do not show the "no items found" entry if the search term is empty ([#5](https://github.com/CTcue/ng-select/issues/5)) ([839d5c8](https://github.com/CTcue/ng-select/commit/839d5c8))
+* Do not use down arrow key to navigate to the next item in tag selection with item test ([#4](https://github.com/CTcue/ng-select/issues/4)) ([22140c6](https://github.com/CTcue/ng-select/commit/22140c6))
 
 
 ### [3.0.6](https://github.com/ng-select/ng-select/compare/v3.0.5...v3.0.6) (2019-08-05)
@@ -39,7 +37,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* emit typeahead value when search is cleared after item is added ([#1289](https://github.com/ng-select/ng-select/issues/1289)) ([550a75a](https://github.com/ng-select/ng-select/commit/550a75a)), closes [#1107](https://github.com/ng-select/ng-select/issues/1107)
+* Emit typeahead value when search is cleared after item is added ([#1289](https://github.com/ng-select/ng-select/issues/1289)) ([550a75a](https://github.com/ng-select/ng-select/commit/550a75a)), closes [#1107](https://github.com/ng-select/ng-select/issues/1107)
 
 
 
@@ -48,8 +46,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* handle IME compositon mode ([5bf42a6](https://github.com/ng-select/ng-select/commit/5bf42a6)), closes [#704](https://github.com/ng-select/ng-select/issues/704)
-
+* Handle IME composition mode ([5bf42a6](https://github.com/ng-select/ng-select/commit/5bf42a6)), closes [#704](https://github.com/ng-select/ng-select/issues/704)
 
 
 ### [3.0.4](https://github.com/ng-select/ng-select/compare/v3.0.3...v3.0.4) (2019-07-26)

@@ -109,6 +109,7 @@ map: {
 | Input  | Type | Default | Required | Description |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | [addTag] | `boolean \| ((term: string) => any \| Promise<any>)`  | `false` | no | Allows to create custom options. |
+| [alwaysShowAddTag] | `boolean` | `false` | no | Always show `addTag`, even if the search input exactly matches an item from the dropdown. |
 | addTagText | `string` | `Add item` | no | Set custom text when using tagging |
 | appendTo | `string` |  null | no | Append dropdown to body or any other element using css selector. For correct positioning `body` should have `position:relative` |
 | bindValue  | `string` | `-` | no | Object property to use for selected model. By default binds to whole object. |
@@ -285,11 +286,14 @@ To release to npm just run `./release.sh`, of course if you have permissions ;)
 This component is inspired by [React select](https://github.com/JedWatson/react-select) and [Virtual scroll](https://github.com/rintoj/angular2-virtual-scroll). Check theirs amazing work and components :)
 
 ## CTcue fork
+
 This is a fork of `ng-select` to improve usability in software developed by CTcue.
+
 It makes the following changes compared with upstream:
 
-  * The custom tag (enabled by the `[addTag]` property) is listed before the items.
-  * The custom tag is visible while loading.
-  * The loading text is hidden while the custom tag is visible.
-  * The input text is not cleared when closing the dropdown.
-  * The text cursor is always placed after the selected value.
+  * The custom tag (enabled via `[addTag]`) is listed before the items.
+  * Additional option `[alwaysShowAddTag]` to always show the `[addTag]` (if enabled).
+  * The custom `[addTag]` is visible while loading (if enabled).
+  * The loading text is hidden while the custom `[addTag]` is visible.
+  * The search input is not cleared when closing the dropdown or clicking outside of the input.
+  * The text cursor is always placed after the selected values(s).
