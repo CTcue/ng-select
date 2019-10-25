@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.0.11](https://github.com/ct-cue/ng-select/compare/v3.0.10...v3.0.11) (2019-10-25)
 
-
+* Additional option `[openOnFocus]` to open the dropdown when the input is focused
 
 ### [3.0.10](https://github.com/CTcue/ng-select/compare/v3.0.9...v3.0.10) (2019-10-17)
 
