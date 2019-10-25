@@ -297,3 +297,4 @@ It makes the following changes compared with upstream:
   * The loading text is hidden while the custom `[addTag]` is visible.
   * The search input is not cleared when closing the dropdown or clicking outside of the input.
   * The text cursor is always placed after the selected values(s).
+  * Additional option `[openOnFocus]` to open the dropdown when the input is focused
