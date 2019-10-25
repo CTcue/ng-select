@@ -1,5 +1,5 @@
 {
-  "repository": "ct-cue/ng-select",
+  "repository": "ctcue/ng-select",
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.0.0"
