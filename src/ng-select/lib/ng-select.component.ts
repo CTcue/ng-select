@@ -57,6 +57,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() hideSelected = false;
     @Input() selectOnTab = false;
     @Input() openOnEnter: boolean;
+    @Input() openOnFocus = true;
     @Input() maxSelectedItems: number;
     @Input() groupBy: string | Function;
     @Input() groupValue: GroupValueFn;
@@ -513,6 +514,10 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     onInputFocus($event) {
         if (this.focused) {
             return;
+        }
+
+        if (this.openOnFocus && !this.isOpen) {
+            this.open();
         }
 
         this.element.classList.add('ng-select-focused');
