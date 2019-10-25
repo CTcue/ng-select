@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.11](https://github.com/ct-cue/ng-select/compare/v3.0.10...v3.0.11) (2019-10-25)
+
+
+
 ### [3.0.10](https://github.com/CTcue/ng-select/compare/v3.0.9...v3.0.10) (2019-10-17)
 
 * Fixes issue where the combination of [addTag]=false and [hideSelected]=true would not emit open event.
