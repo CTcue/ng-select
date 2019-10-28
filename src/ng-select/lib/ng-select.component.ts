@@ -14,8 +14,6 @@ import { NgFooterTemplateDirective, NgHeaderTemplateDirective, NgLabelTemplateDi
 import { SelectionModelFactory } from './selection-model';
 import { isDefined, isFunction, isObject, isPromise } from './value-utils';
 
-
-
 export const SELECTION_MODEL_FACTORY = new InjectionToken<SelectionModelFactory>('ng-select-selection-model');
 export type DropdownPosition = 'bottom' | 'top' | 'auto';
 export type AddTagFn = ((term: string) => any | Promise<any>);
@@ -356,9 +354,11 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
         if (!this._isTypeahead && !this.addTag && this.itemsList.noItemsToSelect) {
             return;
         }
+
         this.isOpen = true;
         this.itemsList.markSelectedOrDefault(this.markFirst && !this.showAddTag);
         this.openEvent.emit();
+
         if (!this.searchTerm) {
             this.focus();
         }

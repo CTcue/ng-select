@@ -63,17 +63,26 @@ export class NgDropdownPanelService {
 
     getScrollTo(itemTop: number, itemHeight: number, lastScroll: number) {
         const { panelHeight } = this.dimensions;
-        const itemBottom = itemTop + itemHeight;
-        const top = lastScroll;
-        const bottom = top + panelHeight;
 
+        const itemBottom = itemTop + itemHeight;
+
+        const viewportTop = lastScroll;
+        const viewportBottom = viewportTop + panelHeight;
+
+        /**
+         * Return if the bottom of the item is visible
+         * and the scroll position has not changed
+         */
         if (panelHeight >= itemBottom && lastScroll === itemTop) {
             return null;
         }
 
-        if (itemBottom > bottom) {
-            return top + itemBottom - bottom;
-        } else if (itemTop <= top) {
+        // Scroll down if the bottom of the item is outside the viewport
+        if (itemBottom > viewportBottom) {
+            return viewportTop + (itemBottom - viewportBottom);
+
+        // Scroll up if the top of the item is outside the viewport
+        } else if (itemTop <= viewportTop) {
             return itemTop;
         }
 
