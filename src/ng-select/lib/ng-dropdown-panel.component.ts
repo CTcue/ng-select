@@ -165,7 +165,9 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
             return;
         }
 
+
         let scrollTo;
+
         if (this.virtualScroll) {
             const itemHeight = this._panelService.dimensions.itemHeight;
             scrollTo = this._panelService.getScrollTo(index * itemHeight, itemHeight, this._lastScrollPosition);
@@ -260,9 +262,6 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
 
     private _updateItems(firstChange: boolean) {
         this.update.emit(this.items);
-        if (firstChange === false) {
-            return;
-        }
 
         this._zone.runOutsideAngular(() => {
             Promise.resolve().then(() => {

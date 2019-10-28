@@ -70,7 +70,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
     @Input() selectTagOnBlur = true;
-    @Input() clearSearchOnBlur = true;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -529,10 +528,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     onInputBlur($event) {
         if (this.showAddTag && this.selectTagOnBlur) {
             this.selectTag();
-        }
-
-        if (this.clearSearchOnBlur) {
-            this._clearSearch();
         }
 
         this.element.classList.remove('ng-select-focused');
