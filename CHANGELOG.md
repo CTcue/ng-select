@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.14](https://github.com/ct-cue/ng-select/compare/v3.0.13...v3.0.14) (2019-10-28)
+
+
+
 ### [3.0.13](https://github.com/ct-cue/ng-select/compare/v3.0.12...v3.0.13) (2019-10-28)
 
 * Additional option `[selectTagOnBlur]` to select the custom tag (if any) when the input is blurred
