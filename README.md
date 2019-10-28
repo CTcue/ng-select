@@ -299,4 +299,3 @@ It makes the following changes compared with upstream:
   * The text cursor is always placed after the selected values(s).
   * Additional option `[openOnFocus]` to open the dropdown when the input is focused
   * Additional option `[selectTagOnBlur]` to select the custom tag (if any) on blur
-  * Additional option `[clearSearchOnBlur]` to clear the input on blur
