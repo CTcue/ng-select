@@ -83,7 +83,7 @@ export class NgDropdownPanelService {
 
         // Scroll up if the top of the item is outside the viewport
         } else if (itemTop <= viewportTop) {
-            return itemTop; // This works well for obvious reasons
+            return itemTop;
         }
 
         return null;
