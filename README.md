@@ -298,3 +298,4 @@ It makes the following changes compared with upstream:
   * The search input is not cleared when closing the dropdown or clicking outside of the input.
   * The text cursor is always placed after the selected values(s).
   * Additional option `[openOnFocus]` to open the dropdown when the input is focused
+  * Additional option `[selectOnBlur]` to select the marked item or the custom tag on blur

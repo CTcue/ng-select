@@ -40,7 +40,6 @@ export type GroupValueFn = (key: string | object, children: any[]) => string | o
     }
 })
 export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
-
     @Input() bindLabel: string;
     @Input() bindValue: string;
     @Input() markFirst = true;
@@ -72,6 +71,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() inputAttrs: { [key: string]: string } = {};
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
+    @Input() selectOnBlur = true;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -376,6 +376,15 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
         this._cd.markForCheck();
     }
 
+    selectItem(item: NgOption) {
+        if (!item || item.disabled || this.disabled) {
+            return;
+        }
+
+        this.select(item);
+        this._onSelectionChanged();
+    }
+
     toggleItem(item: NgOption) {
         if (!item || item.disabled || this.disabled) {
             return;
@@ -526,11 +535,21 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     onInputBlur($event) {
+        if (this.selectOnBlur) {
+            if (this.itemsList.markedItem) {
+                this.selectItem(this.itemsList.markedItem);
+            } else if (this.showAddTag) {
+                this.selectTag();
+            }
+        }
+
         this.element.classList.remove('ng-select-focused');
         this.blurEvent.emit($event);
+
         if (!this.isOpen && !this.disabled) {
             this._onTouched();
         }
+
         this.focused = false;
     }
 
