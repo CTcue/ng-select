@@ -282,6 +282,15 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
         if (!this.focused) {
             this.focus();
+
+            /**
+             * Return if focussing already causes the dropdown to open
+             * to prevent `toggle()` from immediately closing the dropdown
+             * if the `ng-select` is not searchable
+             */
+            if (this.openOnFocus) {
+                return;
+            }
         }
 
         if (this.searchable) {
