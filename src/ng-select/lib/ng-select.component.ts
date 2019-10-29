@@ -535,7 +535,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     onInputBlur($event) {
-        if (this.selectOnBlur && this.searchTerm && this.searchTerm.length) {
+        if (this.selectOnBlur) {
             this._selectInput();
         }
 
@@ -770,6 +770,10 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     private _selectInput() {
+        if (!this.searchTerm || !this.searchTerm.length) {
+            return;
+        }
+
         const term = this.searchTerm.toLowerCase();
 
         // Select the first item that exactly matches the input
