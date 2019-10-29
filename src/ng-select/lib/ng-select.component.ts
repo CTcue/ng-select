@@ -535,8 +535,8 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     onInputBlur($event) {
-        if (this.searchTerm && this.searchTerm.length && this.addTag && this.selectOnBlur) {
-            this.selectTag();
+        if (this.selectOnBlur && this.searchTerm && this.searchTerm.length) {
+            this._selectInput();
         }
 
         this.element.classList.remove('ng-select-focused');
@@ -767,6 +767,23 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return;
         }
         this.dropdownPanel.scrollToTag();
+    }
+
+    private _selectInput() {
+        const term = this.searchTerm.toLowerCase();
+
+        // Select the first item that exactly matches the input
+        for (const item of this.itemsList.filteredItems) {
+            if (item.label.toLowerCase() === term) {
+                this.toggleItem(item);
+                return;
+            }
+        }
+
+        // Select the tag if no item exactly matched the input
+        if (this.addTag) {
+            this.selectTag();
+        }
     }
 
     private _onSelectionChanged() {
