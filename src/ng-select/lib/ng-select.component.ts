@@ -69,7 +69,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() inputAttrs: { [key: string]: string } = {};
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
-    @Input() selectTagOnBlur = true;
+    @Input() selectOnBlur = true;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -535,7 +535,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     onInputBlur($event) {
-        if (this.showAddTag && this.selectTagOnBlur) {
+        if (this.searchTerm && this.searchTerm.length && this.addTag && this.selectOnBlur) {
             this.selectTag();
         }
 
