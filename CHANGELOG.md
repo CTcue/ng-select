@@ -4,16 +4,15 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.0.14](https://github.com/ct-cue/ng-select/compare/v3.0.13...v3.0.14) (2019-10-28)
 
-
+* Fixes issue that prevented the dropdown panel height from being calculated once items had been fetched
 
 ### [3.0.13](https://github.com/ct-cue/ng-select/compare/v3.0.12...v3.0.13) (2019-10-28)
 
 * Additional option `[selectTagOnBlur]` to select the custom tag (if any) when the input is blurred
 
-
 ### [3.0.12](https://github.com/ct-cue/ng-select/compare/v3.0.11...v3.0.12) (2019-10-25)
 
-
+* Change the repository path to `@ctcue/ng-select`
 
 ### [3.0.11](https://github.com/ct-cue/ng-select/compare/v3.0.10...v3.0.11) (2019-10-25)
 

@@ -69,7 +69,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() inputAttrs: { [key: string]: string } = {};
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
-    @Input() selectTagOnBlur = true;
+    @Input() selectOnBlur = true;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -282,6 +282,15 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
         if (!this.focused) {
             this.focus();
+
+            /**
+             * Return if focussing already causes the dropdown to open
+             * to prevent `toggle()` from immediately closing the dropdown
+             * if the `ng-select` is not searchable
+             */
+            if (this.openOnFocus) {
+                return;
+            }
         }
 
         if (this.searchable) {
@@ -526,8 +535,8 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     onInputBlur($event) {
-        if (this.showAddTag && this.selectTagOnBlur) {
-            this.selectTag();
+        if (this.selectOnBlur) {
+            this._selectInput();
         }
 
         this.element.classList.remove('ng-select-focused');
@@ -758,6 +767,27 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return;
         }
         this.dropdownPanel.scrollToTag();
+    }
+
+    private _selectInput() {
+        if (!this.searchTerm || !this.searchTerm.length) {
+            return;
+        }
+
+        const term = this.searchTerm.toLowerCase();
+
+        // Select the first item that exactly matches the input
+        for (const item of this.itemsList.filteredItems) {
+            if (item.label.toLowerCase() === term) {
+                this.toggleItem(item);
+                return;
+            }
+        }
+
+        // Select the tag if no item exactly matched the input
+        if (this.addTag) {
+            this.selectTag();
+        }
     }
 
     private _onSelectionChanged() {
