@@ -140,7 +140,9 @@ map: {
 | [trackByFn] | `(item: any) => any` | `null` | no | Provide custom trackBy function |
 | [clearSearchOnAdd] | `boolean` | `true` | no | Clears search input when item is selected. Default `true`. Default `false` when **closeOnSelect** is `false` |
 | [selectOnTab] | `boolean` | `false` | no | Select marked dropdown item using tab. Default `false`|
+| [selectOnBlur] | `boolean` | `true` | no | Select the first item that matches the input, or the tag. Default `true` |
 | [openOnEnter] | `boolean` | `true` | no | Open dropdown using enter. Default `true`|
+| [openOnFocus] | `boolean` | `true` | no | Open dropdown on focus. Default `false` |
 | [typeahead] | `Subject` |  `-` | no | Custom autocomplete or advanced filter. |
 | typeToSearchText | `string` | `Type to search` | no | Set custom text when using Typeahead |
 | [virtualScroll] | `boolean` |  false | no | Enable virtual scroll for better performance when rendering a lot of data |

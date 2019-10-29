@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.0.15](https://github.com/ct-cue/ng-select/compare/v3.0.14...v3.0.15) (2019-10-29)
 
-
+* Prevents the dropdown menu from closing immediately when it is being opened because of focus.
+* Select the first item that exactly matches the input or the tag on blur. Previously only the tag was selected on blur.
 
 ### [3.0.14](https://github.com/ct-cue/ng-select/compare/v3.0.13...v3.0.14) (2019-10-28)
 
