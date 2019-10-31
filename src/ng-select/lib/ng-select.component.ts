@@ -248,8 +248,10 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
                     this._handleTab($event);
                     break;
                 case KeyCode.Esc:
-                    this.close();
-                    $event.preventDefault();
+                    if (this.isOpen) {
+                        this.close();
+                        $event.preventDefault();
+                    }
                     break;
                 case KeyCode.Backspace:
                     this._handleBackspace();
