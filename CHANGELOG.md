@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [3.0.16](https://github.com/ct-cue/ng-select/compare/v3.0.15...v3.0.16) (2019-11-01)
+### [3.0.17](https://github.com/ct-cue/ng-select/compare/v3.0.16...v3.0.17) (2019-12-09)
 
+* By default, do not select the active item on blur
+
+### [3.0.16](https://github.com/ct-cue/ng-select/compare/v3.0.15...v3.0.16) (2019-11-01)
 
 ### Bug Fixes
 
-* only prevent-default the escape keydown event when the menu is open ([#13](https://github.com/ct-cue/ng-select/issues/13)) ([41ff324](https://github.com/ct-cue/ng-select/commit/41ff324))
-
-
+* Only prevent-default the escape keydown event when the menu is open ([#13](https://github.com/ct-cue/ng-select/issues/13)) ([41ff324](https://github.com/ct-cue/ng-select/commit/41ff324))
 
 ### [3.0.15](https://github.com/ct-cue/ng-select/compare/v3.0.14...v3.0.15) (2019-10-29)
 
