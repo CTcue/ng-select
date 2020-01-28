@@ -2652,29 +2652,6 @@ describe('NgSelectComponent', () => {
                 expect(fixture.componentInstance.select.searchTerm).toBeNull();
             }));
 
-            it('should not clear search term by default when closeOnSelect is false ', fakeAsync(() => {
-                const fixture = createTestingModule(
-                    NgSelectTestCmp,
-                    `<ng-select [items]="cities"
-                        [typeahead]="filter"
-                        bindLabel="name"
-                        [hideSelected]="hideSelected"
-                        [closeOnSelect]="false"
-                        [(ngModel)]="selectedCity">
-                    </ng-select>`);
-
-                expect(fixture.componentInstance.select.clearSearchOnAdd).toBeFalsy();
-
-                fixture.componentInstance.filter.subscribe();
-                fixture.componentInstance.select.filter('new');
-                fixture.componentInstance.cities = [{ id: 4, name: 'New York' }];
-                tickAndDetectChanges(fixture);
-
-                fixture.componentInstance.select.select(fixture.componentInstance.select.viewPortItems[0]);
-                expect(fixture.componentInstance.select.itemsList.filteredItems.length).toBe(1);
-                expect(fixture.componentInstance.select.searchTerm).toBe('new');
-            }));
-
             it('should not clear search term when clearSearchOnAdd is false', fakeAsync(() => {
                 const fixture = createTestingModule(
                     NgSelectTestCmp,
@@ -3063,6 +3040,7 @@ describe('NgSelectComponent', () => {
                             bindLabel="name"
                             [multiple]="true"
                             [disabled]="disabled"
+                            [openOnFocus]="false"
                             [(ngModel)]="selectedCities">
                     </ng-select>`);
 
