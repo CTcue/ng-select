@@ -1909,7 +1909,8 @@ describe('NgSelectComponent', () => {
                     bindLabel="name"
                     placeholder="select value"
                     [(ngModel)]="selectedCities"
-                    [multiple]="true">
+                    [multiple]="true"
+                    [openOnFocus]="false">
                 </ng-select>`);
         });
 
@@ -1954,17 +1955,6 @@ describe('NgSelectComponent', () => {
                 selectOption(fixture, KeyCode.ArrowDown, 1);
                 selectOption(fixture, KeyCode.ArrowDown, 1);
                 tickAndDetectChanges(fixture);
-                expect((<NgOption[]>fixture.componentInstance.select.selectedItems).length).toBe(2);
-            }));
-
-            it('should not open dropdown when maximum of items is reached', fakeAsync(() => {
-                const clickArrow = () => arrowIcon.triggerEventHandler('click', {});
-                selectOption(fixture, KeyCode.ArrowDown, 0);
-                selectOption(fixture, KeyCode.ArrowDown, 1);
-                tickAndDetectChanges(fixture);
-                clickArrow();
-                tickAndDetectChanges(fixture);
-                expect(fixture.componentInstance.select.isOpen).toBe(false);
                 expect((<NgOption[]>fixture.componentInstance.select.selectedItems).length).toBe(2);
             }));
         });
@@ -2474,7 +2464,8 @@ describe('NgSelectComponent', () => {
                 `<ng-select [items]="cities"
                     bindLabel="name"
                     [(ngModel)]="selectedCity"
-                    [multiple]="true">
+                    [multiple]="true"
+                    [clearSearchOnAdd]="true">
                 </ng-select>`);
 
             tickAndDetectChanges(fixture);
@@ -2963,7 +2954,8 @@ describe('NgSelectComponent', () => {
                             autofocus
                             bindLabel="name"
                             [multiple]="true"
-                            [(ngModel)]="selectedCities">
+                            [(ngModel)]="selectedCities"
+                            [openOnFocus]="false">
                 </ng-select>`);
             const select = fixture.componentInstance.select;
             const focus = spyOn(select, 'focus');
