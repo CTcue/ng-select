@@ -95,7 +95,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     @Input()
-    get clearSearchOnAdd() { return isDefined(this._clearSearchOnAdd) ? this._clearSearchOnAdd : this.closeOnSelect; };
+    get clearSearchOnAdd() { return isDefined(this._clearSearchOnAdd) ? this._clearSearchOnAdd : !this.multiple; };
     set clearSearchOnAdd(value) {
         this._clearSearchOnAdd = value;
     };
@@ -148,7 +148,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     private _manualOpen: boolean;
     private _pressedKeys: string[] = [];
     private _compareWith: CompareWithFn;
-    private _clearSearchOnAdd = false;
+    private _clearSearchOnAdd: boolean;
 
     private readonly _destroy$ = new Subject<void>();
     private readonly _keyPress$ = new Subject<string>();
