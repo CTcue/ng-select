@@ -50,7 +50,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() dropdownPosition: DropdownPosition = 'auto';
     @Input() appendTo: string;
     @Input() loading = false;
-    @Input() closeOnSelect = true;
     @Input() hideSelected = false;
     @Input() selectOnTab = false;
     @Input() openOnEnter: boolean;
@@ -95,10 +94,16 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     @Input()
-    get clearSearchOnAdd() { return isDefined(this._clearSearchOnAdd) ? this._clearSearchOnAdd : this.closeOnSelect; };
+    get clearSearchOnAdd() { return isDefined(this._clearSearchOnAdd) ? this._clearSearchOnAdd : !this.multiple; };
     set clearSearchOnAdd(value) {
         this._clearSearchOnAdd = value;
     };
+
+    @Input()
+    get closeOnSelect() { return isDefined(this._closeOnSelect) ? this._closeOnSelect : !this.multiple; }
+    set closeOnSelect(value) {
+        this._closeOnSelect = value;
+    }
 
     // output events
     @Output('blur') blurEvent = new EventEmitter();
@@ -149,6 +154,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     private _pressedKeys: string[] = [];
     private _compareWith: CompareWithFn;
     private _clearSearchOnAdd: boolean;
+    private _closeOnSelect: boolean;
 
     private readonly _destroy$ = new Subject<void>();
     private readonly _keyPress$ = new Subject<string>();
