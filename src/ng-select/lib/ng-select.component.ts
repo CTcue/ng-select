@@ -148,7 +148,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     private _manualOpen: boolean;
     private _pressedKeys: string[] = [];
     private _compareWith: CompareWithFn;
-    private _clearSearchOnAdd: boolean;
+    private _clearSearchOnAdd = false;
 
     private readonly _destroy$ = new Subject<void>();
     private readonly _keyPress$ = new Subject<string>();
