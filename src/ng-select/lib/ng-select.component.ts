@@ -69,6 +69,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
     @Input() selectOnBlur = false;
+    @Input() waitForSave = false;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -149,7 +150,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     private _items = [];
     private _itemsAreUsed: boolean;
     private _defaultLabel = 'label';
-    private _primitive;
+    private _primitive: string | boolean | null;
     private _manualOpen: boolean;
     private _pressedKeys: string[] = [];
     private _compareWith: CompareWithFn;
@@ -408,13 +409,19 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     select(item: NgOption) {
+        if (this.waitForSave) {
+            return;
+        }
+
         if (!item.selected) {
             this.itemsList.select(item);
+
             if (this.clearSearchOnAdd) {
                 this._clearSearch();
             }
 
             this._updateNgModel();
+
             if (this.multiple) {
                 this.addEvent.emit(item.value);
             }

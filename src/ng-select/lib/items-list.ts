@@ -37,7 +37,7 @@ export class ItemsList {
         return this._selectionModel.value;
     }
 
-    get markedItem(): NgOption {
+    get markedItem(): NgOption | undefined {
         return this._filteredItems[this._markedIndex];
     }
 
@@ -207,6 +207,7 @@ export class ItemsList {
         }
 
         const lastMarkedIndex = this._getLastMarkedIndex();
+
         if (lastMarkedIndex > -1) {
             this._markedIndex = lastMarkedIndex;
         } else {
@@ -306,7 +307,8 @@ export class ItemsList {
         }
 
         this._markedIndex = this._getNextItemIndex(steps);
-        if (this.markedItem.disabled) {
+
+        if (this.markedItem && this.markedItem.disabled) {
             this._stepToItem(steps);
         }
     }
@@ -321,6 +323,7 @@ export class ItemsList {
         }
 
         const selectedIndex = this._filteredItems.indexOf(this.lastSelectedItem);
+
         if (this.lastSelectedItem && selectedIndex < 0) {
             return -1;
         }
@@ -365,6 +368,7 @@ export class ItemsList {
     private _flatten(groups: OptionGroups) {
         const isGroupByFn = isFunction(this._ngSelect.groupBy);
         const items = [];
+
         for (const key of Array.from(groups.keys())) {
             let i = items.length;
             if (key === undefined) {
@@ -382,6 +386,7 @@ export class ItemsList {
                 disabled: !this._ngSelect.selectableGroup,
                 htmlId: newId(),
             };
+
             const groupKey = isGroupByFn ? this._ngSelect.bindLabel : <string>this._ngSelect.groupBy;
             const groupValue = this._ngSelect.groupValue || (() => {
                 if (isObjectKey) {
@@ -389,12 +394,14 @@ export class ItemsList {
                 }
                 return { [groupKey]: key };
             });
+
             const children = groups.get(key).map(x => {
                 x.parent = parent;
                 x.children = undefined;
                 x.index = i++;
                 return x;
             });
+
             parent.children = children;
             parent.value = groupValue(key, children.map(x => x.value));
             items.push(parent);
