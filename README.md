@@ -125,7 +125,7 @@ map: {
 | [selectableGroup] | `boolean` | false | no | Allow to select group when groupBy is used |
 | [selectableGroupAsModel] | `boolean` | true | no | Indicates whether to select all children or group itself  |
 | [items] | `Array<any>` | `[]` | yes | Items array |
-| [waitForSave] | `boolean` |  `-` | no | You can block the `select()` of new items while saving |
+| [waitFor] | `boolean` |  `-` | no | You can block the `select()` of new items while saving |
 | [loading] | `boolean` |  `-` | no | You can set the loading state from the outside (e.g. async items loading) |
 | loadingText | `string` | `Loading...` | no | Set custom text when for loading items |
 | labelForId | `string` | `-` | no | Id to associate control with label. |

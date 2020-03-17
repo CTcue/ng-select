@@ -1,8 +1,7 @@
 {
   "repository": "ctcue/ng-select",
   "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 12.14.0"
   },
   "scripts": {
     "build": "ng build ng-select && yarn build:themes && yarn copy-sass",

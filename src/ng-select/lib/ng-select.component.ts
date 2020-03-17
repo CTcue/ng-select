@@ -69,7 +69,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() tabIndex: number;
     @Input() alwaysShowAddTag = false;
     @Input() selectOnBlur = false;
-    @Input() waitForSave = false;
+    @Input() waitFor = false;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -409,7 +409,8 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     select(item: NgOption) {
-        if (this.waitForSave) {
+        // Block `select()` when waiting for outside condition(s)
+        if (this.waitFor) {
             return;
         }
 
