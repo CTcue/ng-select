@@ -28,6 +28,13 @@
     }
   },
   "angularCompilerOptions": {
-    "enableIvy": false
-  }
+    "enableIvy": false,
+    "strictTemplates": false,
+    "strictInputTypes": false,
+    "strictOutputEventTypes": false,
+    "preserveWhitespaces": false,
+    "strictInjectionParameters": false,
+    "fullTemplateTypeCheck": false
+  },
+  "exclude": ["node_modules"]
 }
