@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.19](https://github.com/ct-cue/ng-select/compare/v3.0.16...v3.0.19) (2020-03-17)
+
 ### [3.0.18](https://github.com/ct-cue/ng-select/compare/v3.0.16...v3.0.18) (2020-01-29)
 
 * By default, do not clear the search input when selecting an item if multiple items can be selected
