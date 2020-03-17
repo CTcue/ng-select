@@ -1,13 +1,12 @@
 {
   "name": "@ct-cue/ng-select",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "description": "Angular ng-select - All in One UI Select, Multiselect and Autocomplete",
   "author": "@ct-cue/ng-select",
   "license": "MIT",
   "repository": "ct-cue/ng-select",
   "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 12.14.0"
   },
   "keywords": [
     "angular",
@@ -15,12 +14,11 @@
     "ui-select",
     "dropdown",
     "multiselect",
-    "autocomplete",
-    "angular2"
+    "autocomplete"
   ],
   "peerDependencies": {
-    "@angular/common": ">=8.0.0 <9.0.0",
-    "@angular/core": ">=8.0.0 <9.0.0",
-    "@angular/forms": ">=8.0.0 <9.0.0"
+    "@angular/common": ">=8.0.0",
+    "@angular/core": ">=8.0.0",
+    "@angular/forms": ">=8.0.0"
   }
 }

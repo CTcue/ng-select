@@ -26,5 +26,15 @@
         "src/ng-option-highlight/public-api.ts"
       ]
     }
-  }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "strictTemplates": false,
+    "strictInputTypes": false,
+    "strictOutputEventTypes": false,
+    "preserveWhitespaces": false,
+    "strictInjectionParameters": false,
+    "fullTemplateTypeCheck": false
+  },
+  "exclude": ["node_modules"]
 }
