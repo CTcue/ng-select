@@ -577,7 +577,13 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             this._onTouched();
         }
 
-        this.focused = false;
+        // Only unset `focused` if another element is receiving focus.
+        // This is to prevent `focused` from being unset
+        // when the window/tab loses focus and the dropdown
+        // from being re-opened when focus on the window/tab is restored
+        if ($event.relatedTarget) {
+            this.focused = false;
+        }
     }
 
     onItemHover(item: NgOption) {
