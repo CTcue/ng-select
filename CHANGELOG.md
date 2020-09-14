@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.21](https://github.com/ct-cue/ng-select/compare/v3.0.19...v3.0.21) (2020-09-14)
+
+* Only unset the focus flag if focus is being tranferred to another element.
+  This prevents the dropdown from being reopened if the `[openOnFocus]` flag is set
+  and the browser window/tab is blurred and then re-focussed.
+
 ### [3.0.20](https://github.com/ct-cue/ng-select/compare/v3.0.19...v3.0.20) (2020-08-07)
 
 ### [3.0.19](https://github.com/ct-cue/ng-select/compare/v3.0.16...v3.0.19) (2020-03-17)
