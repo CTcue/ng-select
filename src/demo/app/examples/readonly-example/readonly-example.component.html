@@ -1,0 +1,15 @@
+<form [formGroup]="heroForm" novalidate>
+    <div class="form-group">
+        <label for="age">Age</label>
+
+        <ng-select #agesSelect
+            [items]="ages"
+            [readonly]="true"
+            [(ngModel)]="selectedItem"
+            placeholder="Select age"
+            formControlName="age">
+        </ng-select>
+    </div>
+
+    <pre>{{ selectedItem | json }}</pre>
+</form>

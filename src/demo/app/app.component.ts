@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NgSelectConfig } from '@ct-cue/ng-select';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { NgSelectConfig } from '@ng-select/ng-select';
 
 @Component({
     selector: 'demo-app',

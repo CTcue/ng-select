@@ -22,7 +22,7 @@
       "@ct-cue/ng-select": [
         "src/ng-select/public-api.ts"
       ],
-      "@ng-select/ng-option-highlight": [
+      "@ct-cue/ng-option-highlight": [
         "src/ng-option-highlight/public-api.ts"
       ]
     }

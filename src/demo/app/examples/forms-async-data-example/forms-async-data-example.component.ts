@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgSelectComponent } from '@ng-select/ng-select'
+import { NgSelectComponent } from '@ct-cue/ng-select';
 import { delay } from 'rxjs/operators';
 import { DataService } from '../data.service';
 

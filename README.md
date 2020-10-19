@@ -53,16 +53,21 @@ Library is under active development and may have API breaking changes for subseq
 ### Step 1: Install `ng-select`:
 
 #### NPM
+
 ```shell
-npm install --save @ng-select/ng-select
+npm install --save @ct-cue/ng-select
 ```
+
 #### YARN
+
 ```shell
-yarn add @ng-select/ng-select
+yarn add @ct-cue/ng-select
 ```
+
 ### Step 2: Import the NgSelectModule and angular FormsModule module:
+
 ```js
-import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectModule } from '@ct-cue/ng-select';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -77,12 +82,11 @@ export class AppModule {}
 To allow customization and theming, `ng-select` bundle includes only generic styles that are necessary for correct layout and positioning. To get full look of the control, include one of the themes in your application. If you're using the Angular CLI, you can add this to your `styles.scss` or include it in `.angular-cli.json` (Angular v5 and below) or `angular.json` (Angular v6 onwards).
 
 ```scss
-@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ct-cue/ng-select/themes/default.theme.css";
 // ... or
-@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~@ct-cue/ng-select/themes/material.theme.css";
 
 ```
-
 
 ### Step 4 (Optional): Configuration
 
@@ -94,13 +98,14 @@ typically in your root component, and customize the values of its properties in 
       this.config.notFoundText = 'Custom not found';
   }
 ```
+
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
 In your systemjs config file, `map` needs to tell the System loader where to look for `ng-select`:
 ```js
 map: {
-  '@ng-select/ng-select': 'node_modules/@ng-select/ng-select/bundles/ng-select.umd.js',
+  '@ct-cue/ng-select': 'node_modules/@ct-cue/ng-select/bundles/ng-select.umd.js',
 }
 ```
 

@@ -70,6 +70,8 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() alwaysShowAddTag = false;
     @Input() selectOnBlur = false;
     @Input() waitFor = false;
+    @Input() disabled = false;
+    @Input() readonly = false;
 
     @Input() @HostBinding('class.ng-select-typeahead') typeahead: Subject<string>;
     @Input() @HostBinding('class.ng-select-multiple') multiple = false;
@@ -136,7 +138,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @ViewChild('searchInput', { static: true }) searchInput: ElementRef<HTMLInputElement>;
     @ContentChildren(NgOptionComponent, { descendants: true }) ngOptions: QueryList<NgOptionComponent>;
 
-    @HostBinding('class.ng-select-disabled') disabled = false;
     @HostBinding('class.ng-select-filtered') get filtered() { return (!!this.searchTerm && this.searchable || this._isComposing) };
 
     itemsList: ItemsList;
@@ -367,7 +368,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     open() {
-        if (this.disabled || this.isOpen || this.itemsList.maxItemsSelected || this._manualOpen) {
+        if (this.disabled || this.readonly || this.isOpen || this.itemsList.maxItemsSelected || this._manualOpen) {
             return;
         }
 
@@ -398,7 +399,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     toggleItem(item: NgOption) {
-        if (!item || item.disabled || this.disabled) {
+        if (!item || item.disabled || this.disabled || this.readonly) {
             return;
         }
 
@@ -477,7 +478,11 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     }
 
     showClear() {
-        return this.clearable && (this.hasValue || this.searchTerm) && !this.disabled;
+        if (this.disabled || this.readonly) {
+            return false;
+        }
+
+        return this.clearable && (this.hasValue || this.searchTerm);
     }
 
     trackByOption = (_: number, item: NgOption) => {
@@ -573,7 +578,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
         this.element.classList.remove('ng-select-focused');
         this.blurEvent.emit($event);
 
-        if (!this.isOpen && !this.disabled) {
+        if (!this.isOpen && !this.disabled && !this.readonly) {
             this._onTouched();
         }
 

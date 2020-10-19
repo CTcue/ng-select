@@ -3,21 +3,21 @@
 
 #### NPM
 ```shell
-npm install --save @ng-select/ng-option-highlight
+npm install --save @ct-cue/ng-option-highlight
 ```
 #### YARN
 ```shell
-yarn add @ng-select/ng-option-highlight
+yarn add @ct-cue/ng-option-highlight
 ```
 ### Step 2: Import the NgOptionHighlightModule:
 ```js
-import { NgSelectModule } from '@ng-select/ng-select';
-import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { NgSelectModule } from '@ct-cue/ng-select';
+import { NgOptionHighlightModule } from '@ct-cue/ng-option-highlight';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-      NgSelectModule, 
+      NgSelectModule,
       NgOptionHighlightModule
   ],
   bootstrap: [AppComponent]
@@ -25,7 +25,7 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 export class AppModule {}
 ```
 
-### Step 3: Add directive in your template: 
+### Step 3: Add directive in your template:
 
 ```html
 <ng-select>
