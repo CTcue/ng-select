@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.22](https://github.com/ct-cue/ng-select/compare/v3.0.21...v3.0.22) (2020-10-19)
+
 ### [3.0.21](https://github.com/ct-cue/ng-select/compare/v3.0.19...v3.0.21) (2020-09-14)
 
 * Only unset the focus flag if focus is being tranferred to another element.
@@ -163,7 +165,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### BREAKING CHANGES
 
 * autoCorrect, autoCapitalize are now removed.
-* `[ngOptionHighlight]` is now available from @ng-select/ng-option-highlight
+* `[ngOptionHighlight]` is now available from @ct-cue/ng-option-highlight
 * `[excludeGroupsFromDefaultSelection]` is now removed until better solution is found
 * `filterValue` is now available as `searchTerm`
 

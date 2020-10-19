@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ct-cue/ng-option-highlight';
+import { NgSelectModule } from '@ct-cue/ng-select';
 import { AppendToExampleComponent } from './append-to-example/append-to-example.component';
 import { BindingsCustomExampleComponent } from './bindings-custom-example/bindings-custom-example.component';
 import { BindingsDefaultExampleComponent } from './bindings-default-example/bindings-default-example.component';
@@ -30,6 +30,7 @@ import { MultiSelectHiddenExampleComponent } from './multi-select-hidden-example
 import { MultiSelectLimitExampleComponent } from './multi-select-limit-example/multi-select-limit-example.component';
 import { MultiSelectTemplateExampleComponent } from './multi-select-template-example/multi-select-template-example.component';
 import { OutputEventsExampleComponent } from './output-events-example/output-events-example.component';
+import { ReadonlyExampleComponent } from "./readonly-example/readonly-example.component";
 import { SearchAutocompleteExampleComponent } from './search-autocomplete-example/search-autocomplete-example.component';
 import { SearchCustomExampleComponent } from './search-custom-example/search-custom-example.component';
 import { SearchDefaultExampleComponent } from './search-default-example/search-default-example.component';
@@ -88,7 +89,8 @@ const examples = [DataSourceBackendExampleComponent,
     GroupFunctionExampleComponent,
     GroupSelectableExampleComponent,
     GroupSelectableHiddenExampleComponent,
-    GroupChildrenExampleComponent
+    GroupChildrenExampleComponent,
+    ReadonlyExampleComponent
 ];
 
 @NgModule({

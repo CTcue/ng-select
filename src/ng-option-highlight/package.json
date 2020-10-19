@@ -1,5 +1,5 @@
 {
-  "name": "@ng-select/ng-option-highlight",
+  "name": "@ct-cue/ng-option-highlight",
   "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
