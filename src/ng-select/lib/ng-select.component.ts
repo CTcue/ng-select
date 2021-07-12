@@ -1,4 +1,9 @@
-import { AfterViewInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, ElementRef, EventEmitter, forwardRef, HostBinding, HostListener, Inject, InjectionToken, Input, OnChanges, OnDestroy, Output, QueryList, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component,
+    ContentChild, ContentChildren, ElementRef, EventEmitter, forwardRef,
+    HostBinding, HostListener, Inject, InjectionToken, Input, OnChanges,
+    OnDestroy, Output, QueryList, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { merge, Subject } from 'rxjs';
 import { debounceTime, filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
@@ -10,7 +15,12 @@ import { NgDropdownPanelComponent } from './ng-dropdown-panel.component';
 import { NgDropdownPanelService } from './ng-dropdown-panel.service';
 import { NgOptionComponent } from './ng-option.component';
 import { KeyCode, NgOption } from './ng-select.types';
-import { NgFooterTemplateDirective, NgHeaderTemplateDirective, NgLabelTemplateDirective, NgLoadingSpinnerTemplateDirective, NgLoadingTextTemplateDirective, NgMultiLabelTemplateDirective, NgNotFoundTemplateDirective, NgOptgroupTemplateDirective, NgOptionTemplateDirective, NgTagTemplateDirective, NgTypeToSearchTemplateDirective } from './ng-templates.directive';
+import {
+    NgFooterTemplateDirective, NgHeaderTemplateDirective, NgLabelTemplateDirective,
+    NgLoadingSpinnerTemplateDirective, NgLoadingTextTemplateDirective, NgMultiLabelTemplateDirective,
+    NgNotFoundTemplateDirective, NgOptgroupTemplateDirective, NgOptionTemplateDirective,
+    NgTagTemplateDirective, NgTypeToSearchTemplateDirective
+} from './ng-templates.directive';
 import { SelectionModelFactory } from './selection-model';
 import { isDefined, isFunction, isObject, isPromise } from './value-utils';
 
@@ -529,24 +539,18 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return false;
         }
 
-        // const term = this.searchTerm.toLowerCase().trim();
-        // return this.addTag &&
-        //     (!this.itemsList.filteredItems.some(x => x.label.toLowerCase() === term) &&
-        //         (!this.hideSelected && this.isOpen || !this.selectedItems.some(x => x.label.toLowerCase() === term))) &&
-        //     !this.loading;
-
         if (!this.searchTerm || !this.searchTerm.length || !this.addTag) {
             return false;
         }
         if (this.alwaysShowAddTag) {
             return true;
         }
-        const term = (this.searchTerm ?? "").toLowerCase();
+        const term = (this.searchTerm ?? '').toLowerCase();
         const inputExists = this.itemsList.filteredItems.some((x) => {
-            return (x?.label ?? "").toLowerCase() === term;
+            return (x?.label ?? '').toLowerCase() === term;
         });
         const inputIsSelected = this.selectedItems.some((x) => {
-            return (x?.label ?? "").toLowerCase() === term;
+            return (x?.label ?? '').toLowerCase() === term;
         });
         return !inputExists && !inputIsSelected;
     }
@@ -876,7 +880,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return;
         }
 
-        const term = (this.searchTerm ?? "").toLowerCase();
+        const term = (this.searchTerm ?? '').toLowerCase();
 
         // Select the first item that exactly matches the input
         for (const item of this.itemsList.filteredItems) {
