@@ -1,12 +1,7 @@
- [![npm version](https://badge.fury.io/js/%40ng-select%2Fng-select.svg)](https://badge.fury.io/js/%40ng-select%2Fng-select)
-[![Coverage Status][coveralls-image]][coveralls-url]
-[![gzip bundle size](http://img.badgesize.io/https://unpkg.com/@ng-select/ng-select@latest/bundles/ng-select-ng-select.umd.min.js?compression=gzip&style=flat-square)][ng-select-url]
-
-[coveralls-image]: https://coveralls.io/repos/github/ng-select/ng-select/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/ng-select/ng-select?branch=master
-[ng-select-url]: https://unpkg.com/@ng-select/ng-select@latest
+[![npm version](https://badge.fury.io/js/%40ct-cue%2Fng-select.svg)](https://badge.fury.io/js/%40ct-cue%2Fng-select)
 
 # Angular ng-select - Lightweight all in one UI Select, Multiselect and Autocomplete
+
 See [Demo](https://ng-select.github.io/ng-select) page.
 
 ---
