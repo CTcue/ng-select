@@ -70,7 +70,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @Input() alwaysShowAddTag = false;
     @Input() selectOnBlur = false;
     @Input() waitFor = false;
-    @Input() disabled = false;
     @Input() readonly = false;
     @Input() searchWhileComposing = true;
     @Input() minTermLength = 0;
@@ -114,6 +113,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
     @Input()
     get closeOnSelect() { return isDefined(this._closeOnSelect) ? this._closeOnSelect : !this.multiple; }
+
     set closeOnSelect(value) {
         this._closeOnSelect = value;
     }
@@ -148,8 +148,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
     @ViewChild('searchInput', { static: true }) searchInput: ElementRef<HTMLInputElement>;
     @ContentChildren(NgOptionComponent, { descendants: true }) ngOptions: QueryList<NgOptionComponent>;
 
-    // @HostBinding('class.ng-select-disabled') get disabled() { return this.readonly || this._disabled };
-
+    @HostBinding('class.ng-select-disabled') get disabled() { return this.readonly || this._disabled };
     @HostBinding('class.ng-select-filtered') get filtered() { return (!!this.searchTerm && this.searchable || this._isComposing) };
 
     itemsList: ItemsList;
@@ -416,13 +415,11 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
         this.isOpen = false;
         this._isComposing = false;
-
         if (!this._editableSearchTerm) {
             this._clearSearch();
         } else {
             this.itemsList.resetFilteredItems();
         }
-
         this.itemsList.unmarkItem();
         this._onTouched();
         this.closeEvent.emit();
@@ -455,7 +452,6 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
         if (item && !item.selected) {
             this.itemsList.select(item);
-
             if (this.clearSearchOnAdd && !this._editableSearchTerm) {
                 this._clearSearch();
             }
@@ -533,24 +529,25 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return false;
         }
 
+        // const term = this.searchTerm.toLowerCase().trim();
+        // return this.addTag &&
+        //     (!this.itemsList.filteredItems.some(x => x.label.toLowerCase() === term) &&
+        //         (!this.hideSelected && this.isOpen || !this.selectedItems.some(x => x.label.toLowerCase() === term))) &&
+        //     !this.loading;
+
         if (!this.searchTerm || !this.searchTerm.length || !this.addTag) {
             return false;
         }
-
         if (this.alwaysShowAddTag) {
             return true;
         }
-
         const term = (this.searchTerm ?? "").toLowerCase();
-
         const inputExists = this.itemsList.filteredItems.some((x) => {
             return (x?.label ?? "").toLowerCase() === term;
         });
-
         const inputIsSelected = this.selectedItems.some((x) => {
             return (x?.label ?? "").toLowerCase() === term;
         });
-
         return !inputExists && !inputIsSelected;
     }
 
@@ -564,8 +561,7 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
 
     showTypeToSearch() {
         const empty = (this.itemsList?.filteredItems ?? []).length === 0;
-
-        return empty && this._isTypeahead && !this.searchTerm && !this.loading && !this._validTerm;
+        return empty && this._isTypeahead && !this.loading && !this._validTerm;
     }
 
     onCompositionStart() {
@@ -607,12 +603,12 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
             return;
         }
 
-        if (this.openOnFocus && !this.isOpen) {
-            this.open();
-        }
-
         if (this._editableSearchTerm) {
             this._setSearchTermFromItems();
+        }
+
+        if (this.openOnFocus && !this.isOpen) {
+            this.open();
         }
 
         this.element.classList.add('ng-select-focused');
@@ -639,11 +635,9 @@ export class NgSelectComponent implements OnDestroy, OnChanges, AfterViewInit, C
         if ($event.relatedTarget) {
             this.focused = false;
         }
-
         if (this._editableSearchTerm) {
             this._setSearchTermFromItems();
         }
-
         this.focused = false;
     }
 

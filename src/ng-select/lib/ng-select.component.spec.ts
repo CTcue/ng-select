@@ -2959,6 +2959,7 @@ describe('NgSelectComponent', () => {
                         bindLabel="name"
                         [(ngModel)]="selectedCity">
                     </ng-select>`);
+
                 expect(fixture.componentInstance.select.editableSearchTerm).toBeTruthy();
                 const select = fixture.componentInstance.select;
                 const input = select.searchInput.nativeElement;
