@@ -1,4 +1,10 @@
- [![npm version](https://badge.fury.io/js/%40ct-cue%2Fng-select.svg)](https://badge.fury.io/js/%40ct-cue%2Fng-select)
+ [![npm version](https://badge.fury.io/js/%40ng-select%2Fng-select.svg)](https://badge.fury.io/js/%40ng-select%2Fng-select)
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![gzip bundle size](http://img.badgesize.io/https://unpkg.com/@ng-select/ng-select@latest/bundles/ng-select-ng-select.umd.min.js?compression=gzip&style=flat-square)][ng-select-url]
+
+[coveralls-image]: https://coveralls.io/repos/github/ng-select/ng-select/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/ng-select/ng-select?branch=master
+[ng-select-url]: https://unpkg.com/@ng-select/ng-select@latest
 
 # Angular ng-select - Lightweight all in one UI Select, Multiselect and Autocomplete
 See [Demo](https://ng-select.github.io/ng-select) page.
@@ -9,6 +15,10 @@ See [Demo](https://ng-select.github.io/ng-select) page.
 
 | Angular| ng-select|
 | ------|:------:|
+| >=12.0.0 <13.0.0 | v7.x |
+| >=11.0.0 <12.0.0 | v6.x |
+| >=10.0.0 <11.0.0 | v5.x |
+| >=9.0.0 <10.0.0 | v4.x |
 | >=8.0.0 <9.0.0  | v3.x |
 | >=6.0.0 <8.0.0  | v2.x |
 | v5.x.x  | v1.x |
@@ -96,8 +106,48 @@ typically in your root component, and customize the values of its properties in 
 ```js
   constructor(private config: NgSelectConfig) {
       this.config.notFoundText = 'Custom not found';
+      this.config.appendTo = 'body';
+      // set the bindValue to global config when you use the same
+      // bindValue in most of the place.
+      // You can also override bindValue for the specified template
+      // by defining `bindValue` as property
+      // Eg : <ng-select bindValue="some-new-value"></ng-select>
+      this.config.bindValue = 'value';
   }
 ```
+
+### Usage
+Define options in your consuming component:
+```js
+@Component({...})
+export class ExampleComponent {
+
+    selectedCar: number;
+
+    cars = [
+        { id: 1, name: 'Volvo' },
+        { id: 2, name: 'Saab' },
+        { id: 3, name: 'Opel' },
+        { id: 4, name: 'Audi' },
+    ];
+}
+```
+In template use `ng-select` component with your options
+
+```html
+<!--Using ng-option and for loop-->
+<ng-select [(ngModel)]="selectedCar">
+   <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+</ng-select>
+
+<!--Using items input-->
+<ng-select [items]="cars"
+           bindLabel="name"
+           bindValue="id"
+           [(ngModel)]="selectedCar">
+</ng-select>
+```
+For more detailed examples see [Demo](https://ng-select.github.io/ng-select#/data-sources) page
 
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
@@ -116,6 +166,7 @@ map: {
 | [addTag] | `boolean \| ((term: string) => any \| Promise<any>)`  | `false` | no | Allows to create custom options. |
 | [alwaysShowAddTag] | `boolean` | `false` | no | Always show `addTag`, even if the search input exactly matches an item from the dropdown. |
 | addTagText | `string` | `Add item` | no | Set custom text when using tagging |
+| appearance | `string` | `underline` | no | Allows to select dropdown appearance. Set to `outline` to add border instead of underline (applies only to Material theme) |
 | appendTo | `string` |  null | no | Append dropdown to body or any other element using css selector. For correct positioning `body` should have `position:relative` |
 | bindValue  | `string` | `-` | no | Object property to use for selected model. By default binds to whole object. |
 | bindLabel  | `string` | `label` | no | Object property to use for label. Default `label`  |
@@ -142,18 +193,23 @@ map: {
 | notFoundText | `string` | `No items found` | no | Set custom text when filter returns empty result |
 | placeholder | `string` | `-` | no | Placeholder text. |
 | [searchable] | `boolean` | `true` | no | Allow to search for value. Default `true`|
+| [readonly] | `boolean` | `false` | no | Set ng-select as readonly. Mostly used with reactive forms. |
 | [searchFn] | `(term: string, item: any) => boolean` | `null` | no | Allow to filter by custom search function |
+| [searchWhileComposing] | `boolean` | `true` | no | Whether items should be filtered while composition started |
 | [trackByFn] | `(item: any) => any` | `null` | no | Provide custom trackBy function |
 | [clearSearchOnAdd] | `boolean` | `true` | no | Clears search input when item is selected. Default `true`. Default `false` when **closeOnSelect** is `false` |
+| [editableSearchTerm] | `boolean` |  `false` | no | Allow to edit search query if option selected. Default `false`. Works only if multiple is `false`. |
 | [selectOnTab] | `boolean` | `false` | no | Select marked dropdown item using tab. Default `false`|
 | [selectOnBlur] | `boolean` | `true` | no | Select the first item that matches the input, or the tag. Default `true` |
 | [openOnEnter] | `boolean` | `true` | no | Open dropdown using enter. Default `true`|
 | [openOnFocus] | `boolean` | `true` | no | Open dropdown on focus. Default `false` |
 | [typeahead] | `Subject` |  `-` | no | Custom autocomplete or advanced filter. |
+| [minTermLength] | `number` |  `0` | no | Minimum term length to start a search. Should be used with `typeahead` |
 | typeToSearchText | `string` | `Type to search` | no | Set custom text when using Typeahead |
 | [virtualScroll] | `boolean` |  false | no | Enable virtual scroll for better performance when rendering a lot of data |
 | [inputAttrs] | `{ [key: string]: string }` |  `-` | no | Pass custom attributes to underlying `input` element |
 | [tabIndex] | `number` |  `-` | no | Set tabindex on ng-select |
+| [keyDownFn] | `($event: KeyboardEvent) => bool` |  `true` | no | Provide custom keyDown function. Executed before default handler. Return false to suppress execution of default key down handlers  |
 
 ### Outputs
 
