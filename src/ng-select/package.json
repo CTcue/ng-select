@@ -1,6 +1,6 @@
 {
-  "name": "@ng-select/ng-select",
-  "version": "4.0.2",
+  "name": "@ct-cue/ng-select",
+  "version": "4.0.3",
   "description": "Angular ng-select - All in One UI Select, Multiselect and Autocomplete",
   "author": "@ct-cue/ng-select",
   "license": "MIT",
