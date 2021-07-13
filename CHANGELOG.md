@@ -2,8 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Since 3.2.0, notable changes are on [Releases Page](https://github.com/ng-select/ng-select/releases)
+## [4.0.0](https://github.com/ct-cue/ng-select/compare/v3.0.22...v4.0.0) (2021-07-13)
 
+
+### ⚠ BREAKING CHANGES
+
+* update to Angular 12
+* update to Angular 11
+* angular 10 minimum dependencies
+* **update:** Probably no breaking changes, but bumping to 4.0.0.
+
+### Features
+
+* add appearance property for material theme ([#1413](https://github.com/ct-cue/ng-select/issues/1413)) ([af4c6bb](https://github.com/ct-cue/ng-select/commit/af4c6bb951b135d3f6f3df649a966714a3561367)), closes [#1334](https://github.com/ct-cue/ng-select/issues/1334)
+* add readonly attribute ([8c507aa](https://github.com/ct-cue/ng-select/commit/8c507aac2919a50aa48c7956efd5c2c7da3dbc88)), closes [#786](https://github.com/ct-cue/ng-select/issues/786)
+* allow items to be null ([#1914](https://github.com/ct-cue/ng-select/issues/1914)) ([9df9efc](https://github.com/ct-cue/ng-select/commit/9df9efc7926eafe15d5a791b6a2dcd2fc9110207)), closes [#1580](https://github.com/ct-cue/ng-select/issues/1580) [#1581](https://github.com/ct-cue/ng-select/issues/1581)
+* allow nullish compareWith ([#1857](https://github.com/ct-cue/ng-select/issues/1857)) ([ca0be9b](https://github.com/ct-cue/ng-select/commit/ca0be9b8a9628519bfb1a2ecaa19c3ff0a603682))
+* Append appendTo NgSelectConfig ([#1385](https://github.com/ct-cue/ng-select/issues/1385)) ([ce215ae](https://github.com/ct-cue/ng-select/commit/ce215aeb3b17a39f2dff4b306f7f2d2f7abfabc9))
+* bindValue as global config ([#1392](https://github.com/ct-cue/ng-select/issues/1392)) ([27bb1f5](https://github.com/ct-cue/ng-select/commit/27bb1f5277b72e7b977c1451fd06be2c564e3e69)), closes [#516](https://github.com/ct-cue/ng-select/issues/516)
+* expose DropdownPosition type ([#1400](https://github.com/ct-cue/ng-select/issues/1400)) ([048ef73](https://github.com/ct-cue/ng-select/commit/048ef7309b398ca7732b18deecee40a0cd7e01dd))
+* group selection no longer affects disabled items ([#1434](https://github.com/ct-cue/ng-select/issues/1434)) ([#1437](https://github.com/ct-cue/ng-select/issues/1437)) ([4416422](https://github.com/ct-cue/ng-select/commit/44164228c533cf5a054014f9bf70421e1dccc7a2))
+* **minTermLength:** add minimum term length to start a search ([b06fc5f](https://github.com/ct-cue/ng-select/commit/b06fc5fd7a26e89f224f5fd9ff74f79e14259531)), closes [#685](https://github.com/ct-cue/ng-select/issues/685)
+* **styles:** added variables in default theme to allow customization… ([#1892](https://github.com/ct-cue/ng-select/issues/1892)) ([33c5503](https://github.com/ct-cue/ng-select/commit/33c5503b615f9892e33991402fef90c5e4878208))
+* support bindLabel in global config ([#1840](https://github.com/ct-cue/ng-select/issues/1840)) ([17e9fba](https://github.com/ct-cue/ng-select/commit/17e9fbab53888ffacd4884a261ea131c6e1d80c2))
+* update to angular 10 ([#1696](https://github.com/ct-cue/ng-select/issues/1696)) ([374768c](https://github.com/ct-cue/ng-select/commit/374768cbd61a76cc5a71ea78c093edddf6e8533f)), closes [#1662](https://github.com/ct-cue/ng-select/issues/1662)
+* **update:** Update to angular 9 ([e974504](https://github.com/ct-cue/ng-select/commit/e974504244452f555644a1beed882733abeb1c14))
+* upgrade to angular 11 ([#1844](https://github.com/ct-cue/ng-select/issues/1844)) ([d368b3e](https://github.com/ct-cue/ng-select/commit/d368b3ef30a6739e43eb7bbac223aa6fb1f3cb12)), closes [angular/angular#37221](https://github.com/angular/angular/issues/37221) [angular/angular#37221](https://github.com/angular/angular/issues/37221)
+* upgrade to angular 12 ([#1903](https://github.com/ct-cue/ng-select/issues/1903)) ([9fb09df](https://github.com/ct-cue/ng-select/commit/9fb09df501e4386eee5e1c10b26a2c0fcfb8bac3))
+
+
+### Bug Fixes
+
+* add 1 pixel for reliable triggering scrollToEnd ([#1877](https://github.com/ct-cue/ng-select/issues/1877)) ([cce7e84](https://github.com/ct-cue/ng-select/commit/cce7e8418e36867fe31f68565343e6ce4861911a))
+* add licence for ng-option-highlight ([cef723f](https://github.com/ct-cue/ng-select/commit/cef723fa508da17d0069a3fb38b108b0f5b42882))
+* antd style - cant close dropdown with arrow after selected item ([#1707](https://github.com/ct-cue/ng-select/issues/1707)) ([39f7537](https://github.com/ct-cue/ng-select/commit/39f7537365a4f17a94de83912d27de4534b9d568))
+* appearance outline cut off ([#1656](https://github.com/ct-cue/ng-select/issues/1656)) ([0fed861](https://github.com/ct-cue/ng-select/commit/0fed8615839106c8dec674a4715935ae61cb1a97))
+* **appearance:** apply styles correctly ([e78818e](https://github.com/ct-cue/ng-select/commit/e78818e5b6e83681b351de69f3ec0041b592779b)), closes [#1422](https://github.com/ct-cue/ng-select/issues/1422)
+* **doc:** add missing 5.x version in readme ([f680557](https://github.com/ct-cue/ng-select/commit/f680557d0b065f1fc73257d752069b8556647464))
+* **doc:** fix basic example bindings ([#1761](https://github.com/ct-cue/ng-select/issues/1761)) ([70a2466](https://github.com/ct-cue/ng-select/commit/70a24667633db5a75b10f2b7301e132b69c8b0f0))
+* don't allow empty space as tag ([#1383](https://github.com/ct-cue/ng-select/issues/1383)) ([6f69745](https://github.com/ct-cue/ng-select/commit/6f697451a52a641ce27d12cb97f1e38851e0afc6))
+* emit empty string for default term length ([#1478](https://github.com/ct-cue/ng-select/issues/1478)) ([2741cce](https://github.com/ct-cue/ng-select/commit/2741cce26a53769fbc79d988008126ca62dce7e4)), closes [#1420](https://github.com/ct-cue/ng-select/issues/1420)
+* Explicitly setting the sideEffects property ([#1726](https://github.com/ct-cue/ng-select/issues/1726)) ([a7464bb](https://github.com/ct-cue/ng-select/commit/a7464bba64f26a5a5c7207fd3f0d3fa570377b0c)), closes [#1717](https://github.com/ct-cue/ng-select/issues/1717)
+* fallback to event target when composed path unavailable ([057a5ac](https://github.com/ct-cue/ng-select/commit/057a5ac5e17c250b64ebc0219550ef71e3772295)), closes [#1769](https://github.com/ct-cue/ng-select/issues/1769)
+* filtering after composition end with searchWhileComposing ([f99d06f](https://github.com/ct-cue/ng-select/commit/f99d06f7d1a4ce270a04288ec7f725031379226d)), closes [#1449](https://github.com/ct-cue/ng-select/issues/1449)
+* fix menu position when scrollbar is not visible ([#1404](https://github.com/ct-cue/ng-select/issues/1404)) ([#1739](https://github.com/ct-cue/ng-select/issues/1739)) ([348c117](https://github.com/ct-cue/ng-select/commit/348c1179763f982e9a4c69b1013705110aca651a))
+* force empty ng-option label to have default height ([1399b81](https://github.com/ct-cue/ng-select/commit/1399b8106fd32884cb6d4c28a82bdfb904d302af)), closes [#1831](https://github.com/ct-cue/ng-select/issues/1831)
+* groups map with undefined key has not items with updated selected property ([#1834](https://github.com/ct-cue/ng-select/issues/1834)) ([9635c14](https://github.com/ct-cue/ng-select/commit/9635c145acdef2b7ab680230be3a9ff485c434a1)), closes [#1628](https://github.com/ct-cue/ng-select/issues/1628)
+* **hideSelected:** mark first item on arrow down when last selected ([#1802](https://github.com/ct-cue/ng-select/issues/1802)) ([9fc5ee9](https://github.com/ct-cue/ng-select/commit/9fc5ee91dbf7ee70fce3ac5025258ca7a64e7790))
+* improves accessibility by properly following combox aria tag con… ([#1673](https://github.com/ct-cue/ng-select/issues/1673)) ([503f001](https://github.com/ct-cue/ng-select/commit/503f001122c2904a7b8aec6d36784b095364feb9)), closes [#1617](https://github.com/ct-cue/ng-select/issues/1617)
+* label template is ignored ([#1832](https://github.com/ct-cue/ng-select/issues/1832)) ([d82129e](https://github.com/ct-cue/ng-select/commit/d82129e98fcef10abc0b365fdd57cccb6d4e74c1)), closes [#1813](https://github.com/ct-cue/ng-select/issues/1813)
+* make _handleScroll function compatible with ie11 ([f45c341](https://github.com/ct-cue/ng-select/commit/f45c34146b143916d73cf5c7f2f622eeed3ecce8)), closes [#1780](https://github.com/ct-cue/ng-select/issues/1780)
+* make all templates dynamic ([6801f7f](https://github.com/ct-cue/ng-select/commit/6801f7f26f6f37874c3cc114b7b9650bc572f912)), closes [#1255](https://github.com/ct-cue/ng-select/issues/1255)
+* material theme RTL transform-origin ng-select/ng-select[#1476](https://github.com/ct-cue/ng-select/issues/1476) ([#1546](https://github.com/ct-cue/ng-select/issues/1546)) ([8d615b4](https://github.com/ct-cue/ng-select/commit/8d615b4cdf6c4843f423af930a365a8b8c79b1ce))
+* ngClass overwrites 'ng-select' class ([#1543](https://github.com/ct-cue/ng-select/issues/1543)) ([1dae790](https://github.com/ct-cue/ng-select/commit/1dae79014a8a087c5a306f06fd7adc902521b5b7)), closes [#1535](https://github.com/ct-cue/ng-select/issues/1535)
+* panel items child height when virtual scroll disabled ([#1709](https://github.com/ct-cue/ng-select/issues/1709)) ([ebc80f4](https://github.com/ct-cue/ng-select/commit/ebc80f475bed3fb0602853a27bc340e1e487f60c)), closes [#1708](https://github.com/ct-cue/ng-select/issues/1708)
+* remove browser input padding ([403016f](https://github.com/ct-cue/ng-select/commit/403016f75394d2e752fc3c39245a457159aa5a87))
+* revert sideEffects, remove npm lock json ([c9ada73](https://github.com/ct-cue/ng-select/commit/c9ada73cd285238cf18036511adf31be74ed301b))
+* scroll to marked item while not searchable ([#1663](https://github.com/ct-cue/ng-select/issues/1663)) ([e279518](https://github.com/ct-cue/ng-select/commit/e279518aa5547e1e1aae53594d7180bca7d15f69))
+* **searchWhileComposing:** control whether items should be filtered while composing ([23f54c1](https://github.com/ct-cue/ng-select/commit/23f54c14e9158c3393854e0810e512aa1387547d)), closes [#1296](https://github.com/ct-cue/ng-select/issues/1296)
+* set composing false on close ([cb2a5bc](https://github.com/ct-cue/ng-select/commit/cb2a5bc0e2e4f6d26969c6d086e407ed9d25c422)), closes [#1642](https://github.com/ct-cue/ng-select/issues/1642) [#1735](https://github.com/ct-cue/ng-select/issues/1735)
+* simplify append to example ([#1763](https://github.com/ct-cue/ng-select/issues/1763)) ([b890a99](https://github.com/ct-cue/ng-select/commit/b890a9996f322fc5318f93adb696ebbaa0bee494))
+* small improvements ([#1670](https://github.com/ct-cue/ng-select/issues/1670)) ([3a13adf](https://github.com/ct-cue/ng-select/commit/3a13adf845c71dac081c94640f08954f7f84373e)), closes [#1539](https://github.com/ct-cue/ng-select/issues/1539) [#1639](https://github.com/ct-cue/ng-select/issues/1639) [#1640](https://github.com/ct-cue/ng-select/issues/1640)
+* **style:** fixed color in base styles ([#1491](https://github.com/ct-cue/ng-select/issues/1491)) ([9fc73cc](https://github.com/ct-cue/ng-select/commit/9fc73cc7e31d971e93b2aafbd3edd22e94c0b6fa)), closes [#1454](https://github.com/ct-cue/ng-select/issues/1454)
+* **styles:** ant design - allow to override $ng-select-selected ([#1826](https://github.com/ct-cue/ng-select/issues/1826)) ([85a7dfc](https://github.com/ct-cue/ng-select/commit/85a7dfc0dd1c817f09bda64c8d1f4972fc6eed07))
+* tests ([#1648](https://github.com/ct-cue/ng-select/issues/1648)) ([ffb7b64](https://github.com/ct-cue/ng-select/commit/ffb7b6467dda2b03de487b33737e6c8277f75a30))
+* update peer dep declaration ng 12 ([#1920](https://github.com/ct-cue/ng-select/issues/1920)) ([636ae2b](https://github.com/ct-cue/ng-select/commit/636ae2b0a5b57961498442c5944a2771b25052e2))
+* use composePath while handling scroll ([#1758](https://github.com/ct-cue/ng-select/issues/1758)) ([62606f0](https://github.com/ct-cue/ng-select/commit/62606f0aeaa1bfeea0c4853124b6d172f73fe4d3)), closes [#1317](https://github.com/ct-cue/ng-select/issues/1317)
 
 ### [3.1.1](https://github.com/ng-select/ng-select/compare/v3.1.0...v3.1.1) (2019-10-19)
 
