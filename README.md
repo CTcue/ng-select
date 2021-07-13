@@ -339,10 +339,18 @@ yarn run test:watch
 
 ### Release
 
-To release `@ct-cue/ng-select` on npm run `./release.sh`
+To release `@ct-cue/ng-select` on npm:
 
 - You will need to have permissions ;)
 - Use `npm login` on your own account
+- Run `./release.sh`
+
+
+**NOTE:** It may take some time to see the update on the website, but to see the latest status use:
+
+```
+npm view @ct-cue/ng-select
+```
 
 
 ## Inspiration
