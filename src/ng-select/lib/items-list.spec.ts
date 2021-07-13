@@ -62,6 +62,22 @@ describe('ItemsList', () => {
                 expect(list.selectedItems[0]).toBe(list.items[0]);
             });
 
+            it('should mark first item when last item has being selected', () => {
+                list.setItems([
+                    { label: 'T1', val: 'V1' },
+                    { label: 'T2', val: 'V2' },
+                    { label: 'T3', val: 'V3' }
+                ]);
+                const lastIndex = list.items.length - 1;
+                list.markNextItem();
+                list.markNextItem();
+                list.markNextItem();
+                list.select(list.items[lastIndex]); // 1
+                list.markNextItem();
+                expect(list.selectedItems.length).toBe(1);
+                expect(list.markedIndex).toBe(0);
+            });
+
             it('should items from different groups', () => {
                 cmp.groupBy = 'groupKey';
                 list.setItems([
@@ -78,6 +94,33 @@ describe('ItemsList', () => {
 
                 expect(list.selectedItems.length).toBe(2);
             });
+
+            
+            it('should not select disabled items when selecting group', () => {
+                cmp.groupBy = 'groupKey';
+                list.setItems([
+                    { label: 'K1', val: 'V1', groupKey: 'G1' },
+                    { label: 'K2', val: 'V2', groupKey: 'G1', disabled: true }
+                ]);
+                list.select(list.items[0]); // G1
+
+                expect(list.selectedItems.length).toBe(1);
+                expect(list.selectedItems[0].label).toBe('K1');
+            });
+
+            it('should select group when disabled items are selected', () => {
+                cmp.groupBy = 'groupKey';
+                list.setItems([
+                    { label: 'K1', val: 'V1', groupKey: 'G1' },
+                    { label: 'K2', val: 'V2', groupKey: 'G1', disabled: true }
+                ]);
+                list.select(list.items[2]) // K2
+                list.select(list.items[0]); // G1
+
+                expect(list.selectedItems.length).toBe(1);
+                expect(list.selectedItems[0].label).toBe('G1');
+            });
+
 
             it('should remove item from filtered items when hideSelected=true', () => {
                 cmp.hideSelected = true;
@@ -148,6 +191,8 @@ describe('ItemsList', () => {
                     list.setItems([
                         { label: 'K1', val: 'V1', groupKey: 'G1' },
                         { label: 'K2', val: 'V2', groupKey: 'G1' },
+                        { label: 'K3', val: 'V3', groupKey: 'G2'},
+                        { label: 'K4', val: 'V4', groupKey: 'G2', disabled: true},
                     ]);
                 });
 
@@ -164,6 +209,12 @@ describe('ItemsList', () => {
                     expect(list.selectedItems.length).toBe(2);
                     expect(list.selectedItems[0].label).toBe('K1');
                     expect(list.selectedItems[1].label).toBe('K2');
+                });
+
+                it('should not select disabled items', () => {
+                    list.select(list.items[3]); // G2
+                    expect(list.selectedItems.length).toBe(1);
+                    expect(list.selectedItems[0].label).toBe('K3');
                 });
             })
         });
@@ -241,6 +292,61 @@ describe('ItemsList', () => {
 
                 expect(list.selectedItems.length).toBe(1);
                 expect(list.selectedItems[0].label).toBe(list.items[2].label); // should select only K2
+            });
+
+            it('should not unselect disabled items within a group', () => {
+                cmp.groupBy = 'groupKey';
+                list.setItems([
+                    { label: 'K1', val: 'V1', groupKey: 'G1' },
+                    { label: 'K2', val: 'V2', groupKey: 'G1', disabled: true },
+                    { label: 'K3', val: 'V3', groupKey: 'G2' },
+                    { label: 'K4', val: 'V4', groupKey: 'G2', disabled: true },
+                ]);
+
+                list.select(list.findByLabel('K2'));
+                list.select(list.findByLabel('K4'));
+                list.select(list.findByLabel('G1'));
+                list.select(list.findByLabel('G2'));
+                expect(list.selectedItems.length).toBe(2);
+                expect(list.selectedItems[0].label).toBe('G1');
+                expect(list.selectedItems[1].label).toBe('G2');
+
+                list.unselect(list.findByLabel('G1'));
+                expect(list.selectedItems.length).toBe(2);
+                expect(list.selectedItems[0].label).toBe('G2');
+            });
+
+            it('should not unselect disabled items within a group (groupAsModel=false)', () => {
+                cmp.groupBy = 'groupKey';
+                cmp.selectableGroupAsModel = false;
+                list.setItems([
+                    { label: 'K1', val: 'V1', groupKey: 'G1' },
+                    { label: 'K2', val: 'V2', groupKey: 'G1', disabled: true },
+                ]);
+
+                list.select(list.items[2]); // K2
+                list.select(list.items[0]); // G1
+                expect(list.selectedItems.length).toBe(2);
+                expect(list.selectedItems.find(x => x.label === 'K1')).toBeDefined();
+                expect(list.selectedItems.find(x => x.label === 'K2')).toBeDefined();
+
+                list.unselect(list.items[0]); // G1
+                expect(list.selectedItems.length).toBe(1);
+                expect(list.selectedItems[0].label).toBe('K2');
+            });
+
+            it('should not affect disabled items when un-selecting a group', () => {
+                cmp.groupBy = 'groupKey';
+                list.setItems([
+                    { label: 'K1', val: 'V1', groupKey: 'G1' },
+                    { label: 'K2', val: 'V2', groupKey: 'G1' },
+                    { label: 'K3', val: 'V3', groupKey: 'G1', disabled: true },
+                ]);
+
+                list.select(list.items[0]); // G1
+                list.unselect(list.items[1]); // K1
+                expect(list.selectedItems.length).toBe(1);
+                expect(list.selectedItems[0].label).toBe('K2');
             });
 
             it('should un-select selected item and insert it back to filtered items list when hideSelected=true', () => {

@@ -4,7 +4,6 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    HostListener,
     Inject,
     Input,
     NgZone,
@@ -120,15 +119,6 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         return 0;
     }
 
-    @HostListener('mousedown', ['$event'])
-    handleMousedown($event: MouseEvent) {
-        const target = $event.target as HTMLElement;
-        if (target.tagName === 'INPUT') {
-            return;
-        }
-        $event.preventDefault();
-    }
-
     ngOnInit() {
         this._select = this._dropdown.parentElement;
         this._virtualPadding = this.paddingElementRef.nativeElement;
@@ -137,6 +127,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         this._handleScroll();
         this._handleOutsideClick();
         this._appendDropdown();
+        this._setupMousedownListener();
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -187,9 +178,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     adjustPosition() {
-        const parent = this._parent.getBoundingClientRect();
-        const select = this._select.getBoundingClientRect();
-        this._setOffset(parent, select);
+        this._updateYPosition();
     }
 
     private _handleDropdownPosition() {
@@ -207,7 +196,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         if (this.appendTo) {
-            this._updatePosition();
+            this._updateYPosition();
         }
 
         this._dropdown.style.opacity = '1';
@@ -217,7 +206,11 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         this._zone.runOutsideAngular(() => {
             fromEvent(this.scrollElementRef.nativeElement, 'scroll')
                 .pipe(takeUntil(this._destroy$), auditTime(0, SCROLL_SCHEDULER))
-                .subscribe((e: { target: HTMLElement }) => this._onContentScrolled(e.target.scrollTop));
+                .subscribe((e: { path, composedPath, target }) => {
+                    const path = e.path || (e.composedPath && e.composedPath());
+                    const scrollTop = !path || path.length === 0 ? e.target.scrollTop : path[0].scrollTop
+                    this._onContentScrolled(scrollTop);
+                });
         });
     }
 
@@ -231,7 +224,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
                 fromEvent(this._document, 'touchstart', { capture: true }),
                 fromEvent(this._document, 'mousedown', { capture: true })
             ).pipe(takeUntil(this._destroy$))
-             .subscribe($event => this._checkToClose($event));
+                .subscribe($event => this._checkToClose($event));
         });
     }
 
@@ -256,6 +249,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         if (this.virtualScroll) {
             this._updateItemsRange(firstChange);
         } else {
+            this._setVirtualHeight();
             this._updateItems(firstChange);
         }
     }
@@ -299,6 +293,15 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
             this._virtualPadding.style.height = `${height}px`;
             this._updateScrollHeight = false;
         }
+    }
+
+    private _setVirtualHeight() {
+
+        if (!this._virtualPadding) {
+            return;
+        }
+
+        this._virtualPadding.style.height = `0px`;
     }
 
     private _onItemsLengthChanged() {
@@ -354,7 +357,7 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
             this._virtualPadding :
             this._contentPanel;
 
-        if (scrollTop + this._dropdown.clientHeight >= padding.clientHeight) {
+        if (scrollTop + this._dropdown.clientHeight >= padding.clientHeight - 1) {
             this._zone.run(() => this.scrollToEnd.emit());
             this._scrollToEndFired = true;
         }
@@ -382,25 +385,26 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         this._parent = document.querySelector(this.appendTo);
-        if (!parent) {
+        if (!this._parent) {
             throw new Error(`appendTo selector ${this.appendTo} did not found any parent element`);
         }
+        this._updateXPosition();
         this._parent.appendChild(this._dropdown);
     }
 
-    private _updatePosition() {
+    private _updateXPosition() {
         const select = this._select.getBoundingClientRect();
         const parent = this._parent.getBoundingClientRect();
         const offsetLeft = select.left - parent.left;
-
-        this._setOffset(parent, select);
 
         this._dropdown.style.left = offsetLeft + 'px';
         this._dropdown.style.width = select.width + 'px';
         this._dropdown.style.minWidth = select.width + 'px';
     }
 
-    private _setOffset(parent: ClientRect, select: ClientRect) {
+    private _updateYPosition() {
+        const select = this._select.getBoundingClientRect();
+        const parent = this._parent.getBoundingClientRect();
         const delta = select.height;
 
         if (this._currentPosition === 'top') {
@@ -412,5 +416,19 @@ export class NgDropdownPanelComponent implements OnInit, OnChanges, OnDestroy {
             this._dropdown.style.top = offsetTop + delta + 'px';
             this._dropdown.style.bottom = 'auto';
         }
+    }
+
+    private _setupMousedownListener(): void {
+        this._zone.runOutsideAngular(() => {
+            fromEvent(this._dropdown, 'mousedown')
+                .pipe(takeUntil(this._destroy$))
+                .subscribe((event: MouseEvent) => {
+                    const target = event.target as HTMLElement;
+                    if (target.tagName === 'INPUT') {
+                        return;
+                    }
+                    event.preventDefault();
+                });
+        });
     }
 }

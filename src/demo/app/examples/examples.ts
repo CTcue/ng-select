@@ -29,6 +29,7 @@ import { ReadonlyExampleComponent } from "./readonly-example/readonly-example.co
 import { SearchAutocompleteExampleComponent } from './search-autocomplete-example/search-autocomplete-example.component';
 import { SearchCustomExampleComponent } from './search-custom-example/search-custom-example.component';
 import { SearchDefaultExampleComponent } from './search-default-example/search-default-example.component';
+import { SearchEditableExampleComponent } from './search-editable-example/search-editable-example.component';
 import { TagsBackendExampleComponent } from './tags-backend-example/tags-backend-example.component';
 import { TagsClosedDropdownExampleComponent } from './tags-closed-dropdown-example/tags-closed-dropdown-example.component';
 import { TagsCustomExampleComponent } from './tags-custom-example/tags-custom-example.component';
@@ -103,6 +104,10 @@ export const EXAMPLE_COMPONENTS: { [key: string]: Example } = {
     'search-autocomplete-example': {
         component: SearchAutocompleteExampleComponent,
         title: 'Custom server-side search'
+    },
+    'search-editable-example': {
+        component: SearchEditableExampleComponent,
+        title: 'Editable search value'
     },
     'tags-default-example': {
         component: TagsDefaultExampleComponent,
